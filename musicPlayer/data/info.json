@@ -1,0 +1,31 @@
+{
+    "copyring" : "Music: https://www.bensound.com",
+    "songs" : [
+        {
+            "title": "Better Days",
+            "fileName": "betterdays",
+            "songFormt": "mp3",
+            "posterFormat": "jpg"
+        },
+        {
+            "title": "Dubstep",
+            "fileName": "dubstep",
+            "songFormt": "mp3",
+            "posterFormat": "jpg"
+        },
+        {
+            "title": "Energy",
+            "fileName": "energy",
+            "songFormt": "mp3",
+            "posterFormat": "jpg"
+        },
+        {
+            "title": "Epic",
+            "fileName": "epic",
+            "songFormt": "mp3",
+            "posterFormat": "jpg"
+        }
+    ]
+}
+
+
