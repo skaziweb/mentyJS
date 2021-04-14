@@ -41,11 +41,16 @@ body {
     color: #3392ffc0;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .player-wrapper {
     display: flex;
     flex-direction: column;
     width: 300px;
 }
+
 .player-title {
     width: 100%;
     text-align: center;
@@ -53,16 +58,10 @@ body {
     font-weight: 100;
     letter-spacing: 2px;
     text-shadow: 0 0 4px #000;
-    pointer-events: none;
-    touch-action: none;
     user-select: none;
 }
 
 .player-body {
-    border: 1px solid #13851969;
-    padding: 32px 24px 32px 124px;
-    border-radius: 15px;
-    box-shadow: 0 0 4px 1px #13851969;
     position: relative;
     display: flex;
     min-height: 100px;
@@ -98,14 +97,24 @@ body {
     cursor: pointer;
     background-color: rgba(255, 255, 255, .7);
 }
+
+.player-poster,
+.vinyl-record {
+    cursor: pointer;
+}
 /* Base player styles*/
 
 /* Custom styles*/
+
 .first-theme > .player-body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    border: 1px solid #13851969;
+    padding: 32px 24px 32px 124px;
+    border-radius: 15px;
+    box-shadow: 0 0 4px 1px #13851969;
 }
 
 .first-theme .player-track {
@@ -169,15 +178,15 @@ body {
     margin-left: -2px;
 }
 
-.played #play {
+.first-theme.played #play {
     background-color: rgba(255, 255, 255, 1);
 }
 
-.played #play:hover {
+.first-theme.played #play:hover {
     background-color: rgba(255, 255, 255, 1);
 }
 
-.played #play > i{
+.first-theme.played #play > i{
     margin-right: 0;
 }
 
@@ -189,11 +198,202 @@ body {
 .first-theme .btn:hover > i {
     opacity: 1;
 }
-.played .player-progress {
+
+.first-theme.played .player-progress {
     bottom: 0;
     opacity: 1;
     cursor: pointer;
 }
 
+.first-theme .player-volume {
+    display: none;
+}
+
+/*  Second theme  */
+
+.second-theme .player-body {
+    position: relative;
+    height: 116px;
+    z-index: 2;
+    background-color: #000000;
+    color: whitesmoke;
+    padding: 8px 90px 8px 8px;
+    border-radius: 8px;
+    margin-top: 40px;
+}
+
+.second-theme .vinyl-record{
+    display: flex;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    z-index: 1;
+    position: absolute;
+    background-image: url('../data/betterdays.jpg');
+    background-size: cover;
+    background-position: center;
+    top: 50%;
+    right: -50%;
+    margin-top: -80px;
+    margin-right: 80px;
+    animation: roll 5s linear infinite;
+    animation-play-state: paused;
+}
+.second-theme .vinyl-record::after {
+    content: '';
+    display: flex;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    position: absolute;
+    background-image: radial-gradient(
+        #ffffff 0%,
+        #ffffff 1%,
+        #00000015 2%, 
+        #00000015 29%,
+        #00000065 37%,
+        #ffffff 38%,
+        #00000065 39%, 
+        #00000065 42%,
+        #ffffff 42%,
+        #00000065 44%,
+        #00000065 52%,
+        #ffffff 53%,
+        #00000065 54%,
+        #00000065 57%,
+        #ffffff 58%,
+        #00000065 59%,
+        #00000065 62%,
+        #ffffff 63%,
+        #00000065 64%,
+        #00000065 100%
+    );
+    background-size: contain;
+    top: 0;
+    left: 0;
+}
+
+.second-theme.played .vinyl-record{
+    animation-play-state: running;
+}
+
+.second-theme .player-track {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    padding-right: 45px;
+    animation: leftToRoght 2s linear infinite;
+    animation-play-state: paused;
+}
+
+.second-theme.played .player-track{
+    animation-play-state: running;
+}
+
+.second-theme .btn {
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 4px;
+}
+
+.second-theme .btn:hover {
+    background-color: #fff;
+}
+
+.second-theme #play i{
+    margin-right: -2px;
+}
+
+.second-theme.played #play {
+    background-color: #fff;
+}
+
+.second-theme.played #play i {
+    margin-right: 0;
+}
+
+.second-theme .player-control {
+    display: flex;
+    flex-direction: column;
+    max-width: 40px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.second-theme .player-volume {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: absolute;
+    bottom: 20px;
+    left: 45px;
+    align-items: center;
+    margin: 0 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.second-theme .player-volume > input {
+    max-width: 100px;
+    max-height: 4px;
+    margin: 0 8px;
+    cursor: pointer;
+}
+
+.second-theme .player-progress {
+    width: 100px;
+    height: 4px;
+    align-self: flex-start;
+    background-color: #fff;
+    transition: all 0.5s;
+    opacity: 0;
+    position: absolute;
+    bottom: 26px;
+    left: 76px;
+}
+
+.second-theme .player-progress > span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    width: 0%;
+    background-color: #4b76bc;
+}
+
+.second-theme.played .player-progress {
+    bottom: 20px;
+    opacity: 1;
+    width: 144px;
+    left: 64px;
+    height: 6px;
+    cursor: pointer;
+}
+
+.second-theme.played .player-volume {
+    bottom: 40px;
+}
+
+.second-theme .player-poster {
+    display: none;
+}
+
+@keyframes roll {
+    from {
+        transform: rotate(0deg);
+    } 
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes leftToRoght {
+    0% {
+        transform: translate(-50%, 0) rotateX(0deg);
+    }   
+    100% {
+        transform: translate(-50%, 0) rotateX(360deg);
+    }
+}
+
+/*  Second theme  */
 
 /* Custom styles*/
