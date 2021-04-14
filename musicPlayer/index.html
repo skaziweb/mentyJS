@@ -4,11 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ffc35c87d1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/main.css">
     <title>Music Player</title>
 </head>
 <body>
-    
+    <div class="player-wrapper first-skin" id="player">
+        <h1 class="player-title">Music Player</h1>
+        <audio src="./data/betterdays.mp3" id="audio"></audio>
+        <div class="player-body">
+            <span class="player-poster">
+                <img id="poster" src="./data/betterdays.jpg" alt="Poster">
+            </span>
+            <span class="player-control">
+                <button id="prev" class="btn btn-sm"><i class="fas fa-backward"></i></button>
+                <button id="play" class="btn btn-lg"><i class="fas fa-play"></i></button>
+                <button id="next" class="btn btn-sm"><i class="fas fa-forward"></i></button>
+            </span>
+            <h4 class="player-track" id="title">Better Days</h4>
+            <span class="player-progress" id="progress-bar">
+                <span id="progress"></span>
+            </span>
+        </div>       
+    </div>
+    <p class="copy">Music: <a href="https://www.bensound.com" target="_blank">https://www.bensound.com</a></p>
     <script src="./js/main.js"></script>
 </body>
 </html>
