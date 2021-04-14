@@ -7,6 +7,10 @@ const progress = document.getElementById('progress');
 const progressBar = document.getElementById('progress-bar');
 const poster = document.getElementById('poster');
 const title = document.getElementById('title');
+const vinyl = document.getElementById('vinyl');
+const volume = document.getElementById('volume');
+const playerName = document.getElementById('playerName');
+const playerBody = document.getElementById('playerBody');
 
 const songs = [
     {
@@ -44,6 +48,10 @@ prev.addEventListener('click', prevTrack)
 audio.addEventListener('timeupdate', timeUpdate)
 audio.addEventListener('ended', nextTrack)
 progressBar.addEventListener('click', rewindSong)
+volume.addEventListener('change', changeVolume)
+poster.addEventListener('click', toogleTheme)
+vinyl.addEventListener('click', toogleTheme)
+
 //Functions
 
 function tooglePlay() {
@@ -79,11 +87,17 @@ function prevTrack () {
 }
 
 function updatePlayer() {
+    const isPlayed = player.classList.contains('played');
     const currentSong = songs[songIndex];
     title.innerText = currentSong.title;
     audio.src = `./data/${currentSong.fileName}.${currentSong.songFormat}`;
     poster.src = `./data/${currentSong.fileName}.${currentSong.posterFormat}`;
-    audio.play();
+    vinyl.style.backgroundImage = `url(./data/${currentSong.fileName}.${currentSong.posterFormat})`;
+    if (!isPlayed) {
+        tooglePlay()
+    } else {
+        audio.play();
+    }
 }
 
 function rewindSong(e) {
@@ -97,4 +111,25 @@ function timeUpdate (e) {
     const {duration, currentTime} = e.target;
     const value = Math.round(currentTime / duration * 100);
     progress.style.width = `${value}%`
+}
+
+function changeVolume (e) {
+    audio.volume = e.target.value
+}
+
+function toogleTheme () {
+    const isFirst = player.classList.contains('first-theme');
+    playerBody.style.opacity = 0;
+
+    if (isFirst) {
+        player.classList.add('second-theme');
+        player.classList.remove('first-theme');
+    } else {
+        player.classList.add('first-theme');
+        player.classList.remove('second-theme');
+    }
+
+    setTimeout(() => {
+        playerBody.style.opacity = 1;
+    }, 500);
 }
